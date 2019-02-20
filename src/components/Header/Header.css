@@ -7,7 +7,7 @@
     position: fixed;
     top: 0;
     margin: 0 auto;
-    box-shadow: 0 5px 5px darkslategrey;
+    box-shadow: 0 5px 5px lightskyblue;
     z-index: 1000;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .title {
-    font-family: 'Oxygen', sans-serif;
+    font-family: 'Staatliches', sans-serif;
 }
 
 #score {

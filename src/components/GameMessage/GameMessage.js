@@ -44,7 +44,7 @@ class GameMessage extends Component {
         case "incorrect":
           return "Oops! You already clicked it.";
         default:
-          return "Click each celestial body once.";
+          return "Click each celestial image once.";
         }
     };
 

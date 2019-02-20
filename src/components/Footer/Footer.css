@@ -7,7 +7,7 @@
     position: relative;
     margin-top: 50px;
     margin: 0 auto;
-    font-family: 'Oxygen', sans-serif;
+    font-family: 'Staatliches', sans-serif;
     text-align: center;
 }
 
@@ -17,7 +17,7 @@
     margin: 0 auto;
     width: 100%;
     min-height: 50px;
-    border-top: 5px slategray;
+    border-top: 5px lightskyblue;
     background:black;
     text-align: center;
 }

@@ -83,7 +83,7 @@ class Game extends Component {
                 <Container>
                     {
                         this.state.data.map(item => (
-                            <div className="animated rotateIn">
+                            <div className="animated zoomIn">
                                 <GameCard
                                     key={item.id}
                                     id={item.id} 
