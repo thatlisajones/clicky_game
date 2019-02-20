@@ -6,6 +6,6 @@ Cosmic Click is a memory game built in React with the help of Node.js and Animat
 
 ![ScreenShot](https://github.com/thatlisajones/clicky_game/blob/master/CosmicClickGame.PNG)
 
-[GitHub Repo] (https://github.com/thatlisajones/clicky_game)
+###[GitHub Repo](https://github.com/thatlisajones/clicky_game)
 
-[LinkedIn] (https://www.linkedin.com/in/thatlisajones/)
+###[LinkedIn](https://www.linkedin.com/in/thatlisajones/)
