@@ -1,0 +1,18 @@
+
+.gameMessage {
+    font-size: 1em;
+    font-family: 'Oxygen', sans-serif;
+}
+
+.black {
+    color: white;
+}
+
+.correct {
+    color: yellow;
+}
+
+.incorrect {
+    color: white;
+    -webkit-text-stroke: 1px red;
+}
