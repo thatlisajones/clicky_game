@@ -12,7 +12,7 @@ class Game extends Component {
         data,
         score: 0,
         topScore: 0,
-        message: "Click each celestial body once."
+        message: "Click each image once."
     };
 
     // function gets called when the page loads
@@ -23,7 +23,7 @@ class Game extends Component {
 
     // shuffle the imported data array in random order
     shuffleDeck = data => {
-        let newData = data.sort(function(a, b){return 0.5 - Math.random()});
+        let newData = data.sort(function (a, b) { return 0.5 - Math.random() });
         return newData;
     };
 
@@ -33,7 +33,7 @@ class Game extends Component {
         // console.log(data);
         // console.log(resetData);
         return this.shuffleDeck(resetData);
-      };
+    };
 
     // checks to see if score is higher than the topscore then updates the state with the update array
     correctGuess = newData => {
@@ -49,6 +49,21 @@ class Game extends Component {
         })
     }
 
+
+    // // win function
+    // winGuess = newData => {
+    //     if (newTopScore === 15) {
+    //         this.setState({
+    //             data: this.shuffleDeck(newData),
+    //             score: "WINNER",
+    //             topScore: newTopScore,
+    //             animation: "animated swing"
+    //     })
+
+
+    // }
+
+
     // restarts the game with fresh data
     wrongGuess = newData => {
         this.setState({
@@ -63,36 +78,36 @@ class Game extends Component {
         let guessedCorrectly = false;
         // newData will be the data array with updated clicked properties
         const newData = this.state.data.map(item => {
-          if (item.id === id) {
-            if (!item.clicked) {
-              item.clicked = true;
-              guessedCorrectly = true;
+            if (item.id === id) {
+                if (!item.clicked) {
+                    item.clicked = true;
+                    guessedCorrectly = true;
+                }
             }
-          }
-          return item;     
+            return item;
         });
         // if guessedCorrectly = true, run the correctGuess function,
         // else run the wrongGuess function
         guessedCorrectly ? this.correctGuess(newData) : this.wrongGuess(newData);
-      };
+    };
 
     render() {
         return (
             <div className="animated zoomIn">
-                <Header score={this.state.score} topScore = {this.state.topScore} />
+                <Header score={this.state.score} topScore={this.state.topScore} />
                 <Container>
                     {
                         this.state.data.map(item => (
                             <div className="animated zoomIn">
                                 <GameCard
                                     key={item.id}
-                                    id={item.id} 
+                                    id={item.id}
                                     image={item.image}
                                     animate={!this.state.score && this.state.topScore}
                                     clicked={item.clicked}
                                     handleClick={this.gameCardClick}
-                                />      
-                            </div>  
+                                />
+                            </div>
                         ))
                     }
                 </Container>

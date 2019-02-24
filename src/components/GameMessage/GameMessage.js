@@ -1,86 +1,92 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "./GameMessage.css";
 
 class GameMessage extends Component {
 
-    state = {
-        animating: false,
-        message: ""
+  state = {
+    animating: false,
+    message: ""
+  }
+
+  // function runs on every state change
+  componentDidUpdate(prevProps) {
+
+    // will be passed into setState function
+    let newState = {
+      animating: true
     }
 
-    // function runs on every state change
-    componentDidUpdate(prevProps) {
+    // deconstruct score and topScore from the pervious state
+    const { score, topScore } = prevProps
 
-      // will be passed into setState function
-      let newState = {
-        animating: true
-      }
-
-      // deconstruct score and topScore from the pervious state
-      const {score, topScore} = prevProps
-
-      // change message if user guess correclty or incorrectly
-      if (score === 0 && topScore === 0) {
-        newState.message = "";
-      } else if (score !== 0 && topScore > 0) {
-        newState.message = "correct";
-      } else {
-        newState.message = "incorrect";
-      }
-
-      // set the state with the new message if the score changes, 
-      // or the message and state message are not equal
-      if (score !== this.props.score || this.state.message !== newState.message) {
-        this.setState(newState);
-      }
-  
+    // change message if user guess correclty or incorrectly
+    if (score === 0 && topScore === 0) {
+      newState.message = "";
+    } else if (score !== 0 && topScore > 0) {
+      newState.message = "correct";
+    } else if (score === 15) {
+      newState.message = "winner";
+    } else {
+      newState.message = "incorrect";
     }
 
-    // change the display message based on the message state
-    renderMessage = () => {
-        switch (this.state.message) {
-        case "correct":
-          return "Good! Click another.";
-        case "incorrect":
-          return "Oops! You already clicked it.";
-        default:
-          return "Click each celestial image once.";
-        }
-    };
-
-    // add animation class when animateClass state updates
-    // animations from aniamte.css library
-    // https://daneden.github.io/animate.css/
-    addAnimation = () => {
-      switch (this.state.message) {
-        case "correct":
-          return "animated pulse";
-        case "incorrect":
-          return "animated wobble";
-        default:
-          return "";
-        }     
+    // set the state with the new message if the score changes, 
+    // or the message and state message are not equal
+    if (score !== this.props.score || this.state.message !== newState.message) {
+      this.setState(newState);
     }
 
-    render() {
-        return(
-          <li 
-            // if the state.animation = true, add the class from animate.css to trigger the animation,
-            // also add the state.message as a class, which changes the color,
-            // if aniamtion.state = false, remove the aniamte.css class and add the '.black' class
-            className={` 
+  }
+
+  // change the display message based on the message state
+  renderMessage = () => {
+    switch (this.state.message) {
+      case "correct":
+        return "Good! Click another.";
+      case "winner":
+        return "Winner!";
+      case "incorrect":
+        return "Oops! You already clicked it.";
+      default:
+        return "Click each image once.";
+    }
+  };
+
+  // add animation class when animateClass state updates
+  // animations from aniamte.css library
+  // https://daneden.github.io/animate.css/
+  addAnimation = () => {
+    switch (this.state.message) {
+      case "correct":
+        return "animated pulse";
+      case "winner":
+        return "animated flash";
+      case "incorrect":
+        return "animated wobble";
+      default:
+        return "";
+    }
+  }
+
+  render() {
+    return (
+      <li
+        // if the state.animation = true, add the class from animate.css to trigger the animation,
+        // also add the state.message as a class, which changes the color,
+        // if aniamtion.state = false, remove the aniamte.css class and add the '.black' class
+        className={` 
               gameMessage 
-              ${this.state.animating? this.addAnimation(): ""}  
-              ${this.state.animating? this.state.message: "black"}
+              ${this.state.animating ? this.addAnimation() : ""}  
+              ${this.state.animating ? this.state.message : "black"}
             `}
-            id={`${this.state.message}`}
-            // set the animation state back to false after the classes are added
-            onAnimationEnd={() => this.setState({ animating: false })} 
-          >
-            {this.renderMessage()}
-          </li>  
-        );
-    }
+        id={`${this.state.message}`}
+        // set the animation state back to false after the classes are added
+        onAnimationEnd={() => this.setState({ animating: false })}
+      >
+        {this.renderMessage()}
+      </li>
+    );
+  }
 }
 
 export default GameMessage;
